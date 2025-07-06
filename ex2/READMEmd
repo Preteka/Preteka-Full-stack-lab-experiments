@@ -1,0 +1,24 @@
+                          LIBRARY MANAGEMENT SYSTEM: FORM DATA HANDLING AND DISPLAY USING NODE.JS , EXPRESS AND HANDLEBARS
+AIM:
+	To create a NodeJS server using Express that stores data from a form as a JSON file and displays it in another page.The redirect page should be prepared using Handlebars.
+
+ALGORITHM:
+STEP 1:Start the process.
+STEP 2:	Inside the project folder, create two folders named views (for .hbs files) and public (optional for CSS or static files).
+STEP 3: Inside the views folder, create two files:
+•	form.hbs → to design the input form for book details.
+•	display.hbs → to show the submitted book information using Handlebars template.
+STEP 4: In the root folder, create a file named server.js and write the Express server logic including routes, file handling, and rendering views.
+STEP 5: : In the same folder, create a file named data.json with empty JSON object {} to temporarily store submitted data.
+STEP 6: In the terminal, run npm init -y to initialize the project and create package.json file.
+STEP 7: Install the required packages using the command:
+npm install express body-parser hbs
+STEP 8: Set up middleware and view engine in server.js, configure routes for:
+•	GET / → show the form page.
+•	POST /submit → save form data to data.json file.
+•	GET /display → read data from data.json and render it with display.hbs.
+STEP 9: Run the server using node server.js or npm start and open http://localhost:3000 in your browser.
+STEP 10: Fill the form, submit data, view it on the display page, and stop the server after testing.
+
+OUTPUT:
+                                                                                               
