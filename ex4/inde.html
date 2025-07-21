@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="counterApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Colorful AngularJS Counter</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 50px;
+    }
+
+    .counter-container {
+      background-color: white;
+      border-radius: 15px;
+      padding: 40px;
+      width: 400px;
+      margin: auto;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .count-display {
+      font-size: 60px;
+      color: #ff6f61;
+      margin: 30px 0;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      padding: 15px 25px;
+      font-size: 18px;
+      border-radius: 10px;
+      margin: 10px;
+      transition: 0.3s ease-in-out;
+      cursor: pointer;
+      color: white;
+    }
+
+    .increment {
+      background-color: #28a745;
+    }
+
+    .decrement {
+      background-color: #dc3545;
+    }
+
+    .reset {
+      background-color: #ffc107;
+      color: #333;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body ng-controller="CounterController">
+
+  <div class="counter-container">
+    <h1>AngularJS Counter</h1>
+    <p class="count-display">{{ count }}</p>
+
+    <div class="button-group">
+      <button class="btn increment" ng-click="increment()">➕ Increment</button>
+      <button class="btn decrement" ng-click="decrement()">➖ Decrement</button>
+      <button class="btn reset" ng-click="reset()">🔄 Reset</button>
+    </div>
+  </div>
+
+  <script>
+    var app = angular.module('counterApp', []);
+
+    app.controller('CounterController', function($scope) {
+      $scope.count = 0;
+
+      $scope.increment = function() {
+        $scope.count++;
+      };
+
+      $scope.decrement = function() {
+        $scope.count--;
+      };
+
+      $scope.reset = function() {
+        $scope.count = 0;
+      };
+    });
+  </script>
+
+</body>
+</html>
