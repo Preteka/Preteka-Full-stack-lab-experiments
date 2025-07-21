@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Todo App with Checkboxes</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f9fc;
+      padding: 40px;
+    }
+    h1 {
+      color: #444;
+      text-align: center;
+    }
+    .todo-container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 70%;
+      margin-right: 10px;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 20px;
+    }
+    li {
+      display: flex;
+      align-items: center;
+      background: #f0f0f0;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+    li.completed span {
+      text-decoration: line-through;
+      color: gray;
+    }
+    .todo-text {
+      flex: 1;
+      margin-left: 10px;
+    }
+    .delete-btn {
+      background: #dc3545;
+    }
+  </style>
+</head>
+<body ng-controller="TodoController">
+  <div class="todo-container">
+    <h1>My Todo List</h1>
+
+    <form ng-submit="addTodo()">
+      <input type="text" ng-model="newTodo" placeholder="Enter new task" required>
+      <button type="submit">Add</button>
+    </form>
+
+    <ul>
+      <li ng-repeat="todo in todos" ng-class="{ completed: todo.completed }">
+        <input type="checkbox" ng-model="todo.completed" ng-change="updateTodo($index)">
+        <span class="todo-text">{{ todo.text }}</span>
+        <button class="delete-btn" ng-click="deleteTodo($index)">Delete</button>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    var app = angular.module('todoApp', []);
+    app.controller('TodoController', function($scope, $http) {
+      $scope.todos = [];
+
+      $http.get('/todos').then(function(response) {
+        $scope.todos = response.data;
+      });
+
+      $scope.addTodo = function() {
+        const newItem = { text: $scope.newTodo, completed: false };
+        $http.post('/todos', newItem).then(function(response) {
+          $scope.todos = response.data;
+          $scope.newTodo = "";
+        });
+      };
+
+      $scope.deleteTodo = function(index) {
+        $http.delete('/todos/' + index).then(function(response) {
+          $scope.todos = response.data;
+        });
+      };
+
+      $scope.updateTodo = function(index) {
+        $http.put('/todos/' + index, $scope.todos[index]);
+      };
+    });
+  </script>
+</body>
+</html>

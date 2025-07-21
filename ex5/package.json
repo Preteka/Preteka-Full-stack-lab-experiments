@@ -1,0 +1,14 @@
+{
+  "name": "todo-angularjs",
+  "version": "1.0.0",
+  "description": "AngularJS Todo app with Node.js backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Preteka",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
