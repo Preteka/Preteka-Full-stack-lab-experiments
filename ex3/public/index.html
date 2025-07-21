@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>People Form</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📝 People Registration</h1>
+    <form action="/students" method="POST">
+      <label>Name:</label>
+      <input type="text" name="name" required />
+
+      <label>Age:</label>
+      <input type="number" name="age" required />
+
+      <label>Blood Group:</label>
+      <input type="text" name="bloodgroup" required />
+
+      <button type="submit">➕ Add Member</button>
+    </form>
+
+    <a href="/students" class="view-link">📋 View All Member</a>
+  </div>
+</body>
+</html>
